@@ -20,10 +20,8 @@ slope = 0.00315
 yIntercept = 0.20276
 standartDeviation = 1.05645
 
-csvdirectory = "C:/Users/Bruger/Documents/python/stuff/superligaResults.csv"
-pi_directory = "C:/Users/Bruger/Documents/python/stuff/superligaResults.df"
+pi_directory = "./superligaResults.df"
 
-#probabilityTable = [[0] * 12] * 12
 
 probabilityTable = pd.DataFrame("X", index=range(12), columns=range(12))
 
@@ -33,27 +31,8 @@ for homeIndex in range(12):
 			xG = xGMean(ratings[homeIndex], ratings[awayIndex])
 			HT, X, AT = homeEvenAwayProbability(xG)
 			print(HT, X, AT, homeIndex, awayIndex)
-			probabilityTable.loc[homeIndex, awayIndex] = [HT, X, AT] #f"{HT},{X},{AT}"
-			#probabilityTable[homeIndex][awayIndex] = f"{HT},{X},{AT}"
+			probabilityTable.loc[homeIndex, awayIndex] = [HT, X, AT]
 
 print(probabilityTable)
 
 probabilityTable.to_pickle(pi_directory)
-
-"""
-with open(csvdirectory,"w") as my_csv:
-    csvWriter = csv.writer(my_csv)
-    csvWriter.writerows(probabilityTable)
-
-
-
-
-
-if __name__ == "__main__":
-	xG = xGMean(ratings[2], ratings[7])
-
-	HT, X, AT = homeEvenAwayProbability(xG)
-
-	print(xG)
-	print(HT, X, AT)
-"""
