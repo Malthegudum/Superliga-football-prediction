@@ -5,22 +5,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import time
 
-pi_directory = "C:/Users/Bruger/Documents/python/stuff/superligaResults.df"
+pi_directory = "./superligaResults.df"
 teams = ["AaB", "AC Horsens", "AGF", "FC Nordsjaelland", "Lyngby", "Odense BK", "Silkeborg", "FC Copenhagen", "Viborg", "Brondby", "FC Midtjylland", "Randers FC"]
 
 simulations = 10000
 
-#with open(csvdirectory, newline='') as csvfile:
-#    probabilities = list(csv.reader(csvfile))
 probabilities = pd.read_pickle(pi_directory)
-"""
-for i in range(12):
-	for j in range(12):
-		if i == j:
-			probabilities.loc[i, j] = None
-		else:
-			splitlist = probabilities.loc[i, j].split(",")
-			probabilities.loc[i,j] = list(map(float,splitlist))"""
+
 
 
 def simulateSeason():
@@ -93,7 +84,6 @@ for i in range(simulations):
 
 winprobability = np.array(wins) / simulations
 
-#print(winprobability)
 
 winprop = {}
 for key in teams:
@@ -107,4 +97,3 @@ fig.subplots_adjust(left=0.25)
 ax.bar_label(bars)
 print("Task completed")
 plt.show()
-#["AaB", "AC Horsens", "AGF", "FC Nordsjaelland", "Lyngby", "Odense BK", "Silkeborg", "FC Copenhagen", "Viborg", "Brondby", "FC Midtjylland", "Randers FC"]
